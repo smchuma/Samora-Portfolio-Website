@@ -17,13 +17,17 @@
 }
 
 .dark {
-  color: #0d0d0d;
+  background-color: #272727 !important;
 }
 
 .light {
-  color: #1b1b1b;
+  background-color: #1b1b1b !important;
 }
 
 .lighter {
-  color: #404040;
+  background-color: #404040 !important;
+}
+
+.light-color {
+  color: #1b1b1b !important;
 }

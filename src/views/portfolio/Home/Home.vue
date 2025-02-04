@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1 class="text-red-500">Home</h1>
+  <div class="dark h-screen">
+    <h1 class="">Home</h1>
+  </div>
 </template>
