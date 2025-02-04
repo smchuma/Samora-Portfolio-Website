@@ -30,7 +30,7 @@ const route = useRouter();
 
 <template>
   <main class="bg-[#1B1B1B] h-full text-white">
-    <h1 class="josefin text-xl pt-5 text-center mb-10">samora.dev</h1>
+    <h1 class="josefin text-2xl pt-5 text-center mb-10 pattaya">samora</h1>
 
     <div v-for="item in navItems" :key="item.name" class="mt-2">
       <RouterLink
