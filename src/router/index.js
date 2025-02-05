@@ -9,7 +9,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    name: "home",
+    name: "Home",
     component: Home,
   },
   {
@@ -18,22 +18,22 @@ const routes = [
     children: [
       {
         path: "user",
-        name: "user",
+        name: "User",
         component: User,
       },
       {
         path: "education",
-        name: "education",
+        name: "Education",
         component: Education,
       },
       {
         path: "experience",
-        name: "experience",
+        name: "Experience",
         component: Experience,
       },
       {
         path: "projects",
-        name: "projects",
+        name: "Projects",
         component: Projects,
       },
     ],
