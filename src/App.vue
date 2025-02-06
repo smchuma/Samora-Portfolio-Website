@@ -3,7 +3,8 @@ import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <div class="h-screen text-white">
+  <div class="h-screen">
+    <Toast />
     <RouterView />
   </div>
 </template>
