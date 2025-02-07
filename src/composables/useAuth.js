@@ -15,7 +15,7 @@ export const useAuth = () => {
     queryKey: ["authUser"],
     queryFn: async () => {
       const response = await axiosClient.get("/auth/check_auth");
-      console.log(response.data.user);
+
       return response.data.user;
     },
     enabled: isAuthenticated.value, //  Fetch only when logged in
@@ -23,7 +23,6 @@ export const useAuth = () => {
 
   const loginMutate = useMutation({
     mutationFn: async (credentials) => {
-      console.log(credentials);
       const response = await axiosClient.post("/auth/login", credentials);
       return response.data.user;
     },
@@ -35,10 +34,8 @@ export const useAuth = () => {
     },
     onError: (error) => {
       if (error.response) {
-        console.log("Error", error.response.data);
         errorMessage.value = error.response?.data?.message || "Login failed";
       } else {
-        console.log(error.message);
         errorMessage.value = error.response?.data?.message || "Login failed";
       }
     },
