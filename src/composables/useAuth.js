@@ -24,10 +24,10 @@ export const useAuth = () => {
   const loginMutate = useMutation({
     mutationFn: async (credentials) => {
       const response = await axiosClient.post("/auth/login", credentials);
-      return response.data.user;
+      return response.data;
     },
     onSuccess: (data) => {
-      if (data) {
+      if (data.success === true) {
         authStore.setAuthenticated(true);
         router.push({ name: "User" });
       }

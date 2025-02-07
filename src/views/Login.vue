@@ -64,7 +64,7 @@ const handleFormSubmit = (values) => {
         <button
           type="submit"
           :disabled="isLogin"
-          class="w-full bg-blue-600 transition-all text-white font-semibold py-2 px-4 rounded-md"
+          class="w-full bg-blue-600 transition-all text-white font-semibold py-2 px-4 rounded-md text-sm"
           :class="{
             'bg-blue-900 cursor-not-allowed': isLogin,
             'hover:scale-[102%] hover:bg-blue-800': !isLogin,
