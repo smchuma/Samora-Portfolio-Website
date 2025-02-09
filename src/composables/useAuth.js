@@ -41,6 +41,24 @@ export const useAuth = () => {
     },
   });
 
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      const response = await axiosClient.post("/auth/logout");
+      return response.data;
+    },
+    onSuccess: () => {
+      authStore.setAuthenticated(false);
+      router.push({ name: "Login" });
+    },
+    onError: (error) => {
+      if (error.response) {
+        errorMessage.value = error.response?.data?.message || "Logout failed";
+      } else {
+        errorMessage.value = error.response?.data?.message || "Logout failed";
+      }
+    },
+  });
+
   return {
     data,
     isLoading,
@@ -48,6 +66,7 @@ export const useAuth = () => {
     login: loginMutate.mutate,
     isLogin: loginMutate.isPending,
     errorMessage,
+    logout: logoutMutation.mutate,
   };
 };
 

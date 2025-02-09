@@ -1,12 +1,36 @@
 <script setup>
-import { HousePlus, Menu } from "lucide-vue-next";
-import { Avatar } from "primevue";
+import { HousePlus, MenuIcon } from "lucide-vue-next";
+import { Avatar, Menu } from "primevue";
 import { useRouter } from "vue-router";
 import { useAuth } from "@/composables/useAuth";
+import { ref } from "vue";
 
 const router = useRouter();
+const menu = ref(null);
 
-const { data: user } = useAuth();
+const { logout, data: user } = useAuth();
+
+const getInitials = (user) => {
+  if (user) {
+    const firstLetter = user.first_name
+      ? user?.first_name.charAt(0).toUpperCase()
+      : "";
+    const lastLetter = user.last_name
+      ? user?.last_name.charAt(0).toUpperCase()
+      : "";
+    return firstLetter + lastLetter;
+  }
+};
+
+const menuItems = [
+  {
+    label: "Logout",
+    icon: "pi pi-sign-out",
+    command: () => {
+      logout();
+    },
+  },
+];
 </script>
 
 <template>
@@ -14,7 +38,7 @@ const { data: user } = useAuth();
     class="flex lighter pl-10 pr-5 py-5 w-full justify-between items-center"
   >
     <div class="flex gap-x-2 items-center">
-      <Menu size="20" class="text-gray-300 md:hidden mr-4 md:mr-0" />
+      <MenuIcon size="20" class="text-gray-300 md:hidden mr-4 md:mr-0" />
       <HousePlus size="20" class="text-gray-300" />
       <p class="text-gray-300 font-sans font-semibold">
         / {{ router.currentRoute.value.name }}
@@ -24,10 +48,19 @@ const { data: user } = useAuth();
       <h1 class="josefin text-xl pattaya text-gray-300">
         {{ user?.first_name }}
       </h1>
+
+      <Menu
+        ref="menu"
+        :model="menuItems"
+        popup
+        class="bg-gray-1"
+        id="overlay_menu"
+      />
       <Avatar
-        image="https://media.licdn.com/dms/image/v2/D4D03AQFof-aOHU7Ahg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1712228956090?e=1744243200&v=beta&t=fK9hcK3AL-8WfskMxpZJkMkQs0DcOSm3O_wKppVjr3Y"
-        class=""
+        :label="getInitials(user)"
+        class="bg-gray-200 border-5 cursor-pointer"
         shape="circle"
+        @click="menu.toggle($event)"
       />
     </div>
   </main>
