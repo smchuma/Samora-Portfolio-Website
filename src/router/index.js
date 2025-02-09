@@ -1,4 +1,5 @@
 import AdminLayout from "@/layouts/AdminLayout.vue";
+import redirectIfGuest from "@/middlewares/redirectIfGuest";
 import Education from "@/views/admin/Education.vue";
 import Experience from "@/views/admin/Experience.vue";
 import Projects from "@/views/admin/Projects.vue";
@@ -6,6 +7,8 @@ import User from "@/views/admin/User.vue";
 import Login from "@/views/Login.vue";
 import Home from "@/views/portfolio/Home/Home.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import middlewarePipeline from "./middlewarePipeline";
+import redirectIfAuthenticated from "@/middlewares/redirectIfAuthenticated";
 
 const routes = [
   {
@@ -17,6 +20,7 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+    meta: { middleware: [redirectIfAuthenticated] },
   },
   {
     path: "/admin",
@@ -43,12 +47,28 @@ const routes = [
         component: Projects,
       },
     ],
+    meta: { middleware: [redirectIfGuest] },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta.middleware) {
+    return next();
+  }
+
+  const middleware = to.meta.middleware;
+
+  const context = { to, from, next };
+
+  return middleware[0]({
+    ...context,
+    next: middlewarePipeline(context, middleware, 1),
+  });
 });
 
 export default router;
