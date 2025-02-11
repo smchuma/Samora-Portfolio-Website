@@ -50,6 +50,5 @@ const route = useRouter();
         {{ item.name }}
       </RouterLink>
     </div>
-    <div class="bottom-5 px-16 absolute">Logout</div>
   </main>
 </template>

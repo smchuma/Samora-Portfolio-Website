@@ -45,10 +45,6 @@ const menuItems = [
       </p>
     </div>
     <div class="flex items-center gap-x-2">
-      <h1 class="josefin text-xl pattaya text-gray-300">
-        {{ user?.first_name }}
-      </h1>
-
       <Menu
         ref="menu"
         :model="menuItems"

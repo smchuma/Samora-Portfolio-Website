@@ -59,6 +59,29 @@ export const useAuth = () => {
     },
   });
 
+  const updateUserMutation = useMutation({
+    mutationFn: async (data) => {
+      const response = await axiosClient.put(
+        `/auth/update_user/${data.id}`,
+        data
+      );
+      return response.data;
+    },
+    onSuccess: (data) => {
+      if (data.success === true) {
+        authStore.setAuthenticated(true);
+        router.push({ name: "User" });
+      }
+    },
+    onError: (error) => {
+      if (error.response) {
+        errorMessage.value = error.response?.data?.message || "Update failed";
+      } else {
+        errorMessage.value = error.response?.data?.message || "Update failed";
+      }
+    },
+  });
+
   return {
     data,
     isLoading,
@@ -67,6 +90,8 @@ export const useAuth = () => {
     isLogin: loginMutate.isPending,
     errorMessage,
     logout: logoutMutation.mutate,
+    updateUser: updateUserMutation.mutate,
+    isUpdating: updateUserMutation.isPending,
   };
 };
 
