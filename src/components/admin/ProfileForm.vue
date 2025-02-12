@@ -3,7 +3,7 @@ import useAuth from "@/composables/useAuth";
 import { Button, InputText } from "primevue";
 import { computed, reactive, ref, watchEffect } from "vue";
 
-const { data: user, updateUser, errorMessage, isUpdating } = useAuth();
+const { data: user, updateUser, isUpdating } = useAuth();
 
 const form = reactive({
   id: "",
@@ -96,7 +96,6 @@ const saveProfile = () => {
           </div>
         </div>
       </div>
-      <p class="text-red-400 mt-6">{{ errorMessage }}</p>
       <Button
         :disabled="!isFormChanged || isUpdating"
         class="mt-10 mb-20 w-28 !bg-blue-600 !transition-all"

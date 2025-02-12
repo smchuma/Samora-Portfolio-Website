@@ -1,13 +1,15 @@
 import { useAuthStore } from "@/stores/AuthStore";
-import { useMutation, useQuery } from "@tanstack/vue-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/vue-query";
 import axiosClient from "@/axios";
 import router from "@/router";
 import { computed, ref } from "vue";
+import { useToast } from "primevue";
 
 export const useAuth = () => {
   const authStore = useAuthStore();
+  const toast = useToast();
 
-  const errorMessage = ref(null);
+  const queryClient = useQueryClient();
 
   const isAuthenticated = computed(() => authStore.isAuthenticated);
 
@@ -33,11 +35,13 @@ export const useAuth = () => {
       }
     },
     onError: (error) => {
-      if (error.response) {
-        errorMessage.value = error.response?.data?.message || "Login failed";
-      } else {
-        errorMessage.value = error.response?.data?.message || "Login failed";
-      }
+      const message = error.response?.data?.message || "Login failed";
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: message,
+        life: 5000,
+      });
     },
   });
 
@@ -51,11 +55,13 @@ export const useAuth = () => {
       router.push({ name: "Login" });
     },
     onError: (error) => {
-      if (error.response) {
-        errorMessage.value = error.response?.data?.message || "Logout failed";
-      } else {
-        errorMessage.value = error.response?.data?.message || "Logout failed";
-      }
+      const message = error.response?.data?.message || "Logout failed";
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: message,
+        life: 5000,
+      });
     },
   });
 
@@ -69,16 +75,23 @@ export const useAuth = () => {
     },
     onSuccess: (data) => {
       if (data.success === true) {
-        authStore.setAuthenticated(true);
-        router.push({ name: "User" });
+        toast.add({
+          severity: "success",
+          summary: "Success",
+          detail: data.message,
+          life: 5000,
+        });
+        queryClient.invalidateQueries(["authUser"]);
       }
     },
     onError: (error) => {
-      if (error.response) {
-        errorMessage.value = error.response?.data?.message || "Update failed";
-      } else {
-        errorMessage.value = error.response?.data?.message || "Update failed";
-      }
+      const message = error.response?.data?.message || "Update failed";
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: message,
+        life: 5000,
+      });
     },
   });
 
@@ -88,7 +101,6 @@ export const useAuth = () => {
     isError,
     login: loginMutate.mutate,
     isLogin: loginMutate.isPending,
-    errorMessage,
     logout: logoutMutation.mutate,
     updateUser: updateUserMutation.mutate,
     isUpdating: updateUserMutation.isPending,
