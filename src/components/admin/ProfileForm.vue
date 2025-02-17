@@ -81,7 +81,7 @@ const saveProfile = () => {
             <InputText
               id="first_name"
               disabled
-              class="!bg-gray-700 w-full cursor-not-allowed !border-blue-300 !text-white rounded-md px-3 py-2"
+              class="!bg-transparent w-full cursor-not-allowed !border-blue-300 !text-white rounded-md px-3 py-2"
               v-model="form.email"
             />
           </div>
@@ -89,7 +89,7 @@ const saveProfile = () => {
             <label for="username" class="mb-2">Phone Number</label>
             <InputText
               id="first_name"
-              class="!bg-gray-700 w-full cursor-not-allowed !border-blue-300 !text-white rounded-md px-3 py-2"
+              class="!bg-transparent w-full cursor-not-allowed !border-blue-300 !text-white rounded-md px-3 py-2"
               v-model="form.phone_number"
               disabled
             />

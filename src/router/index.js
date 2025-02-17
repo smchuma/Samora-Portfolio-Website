@@ -9,12 +9,19 @@ import Home from "@/views/portfolio/Home/Home.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import middlewarePipeline from "./middlewarePipeline";
 import redirectIfAuthenticated from "@/middlewares/redirectIfAuthenticated";
+import PortfolioLayout from "@/layouts/PortfolioLayout.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    component: PortfolioLayout,
+    children: [
+      {
+        path: "",
+        name: "Home",
+        component: Home,
+      },
+    ],
   },
   {
     path: "/login",

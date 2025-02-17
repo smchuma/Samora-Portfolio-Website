@@ -6,7 +6,7 @@ import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <main class="dark w-full h-screen text-white josefin">
+  <main class="pattern w-full h-screen text-white josefin">
     <div class="flex">
       <div class="fixed hidden md:block md:w-52 h-screen">
         <AdminSidebar />

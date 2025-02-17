@@ -1,7 +1,17 @@
-<script setup lang="ts"></script>
+<script setup>
+import axiosClient from "@/axios";
+import { watch } from "vue";
+</script>
 
 <template>
-  <div class="pattern h-screen">
-    <h1 class="">Home</h1>
-  </div>
+  <main class="h-full">
+    <div class="flex">
+      <div class="flex-1">
+        <h1>Home</h1>
+      </div>
+      <div class="flex-1">
+        <h1>Home</h1>
+      </div>
+    </div>
+  </main>
 </template>

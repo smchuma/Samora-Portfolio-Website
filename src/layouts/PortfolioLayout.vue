@@ -1,7 +1,14 @@
-<template>
-  <h1>PortofolioLayout</h1>
-</template>
+<script setup>
+import Navbar from "@/components/portfolio/Navbar.vue";
+</script>
 
-<script setup lang="ts"></script>
+<template>
+  <div class="h-screen pattern">
+    <Navbar />
+    <main class="pt-20 h-screen px-16">
+      <RouterView />
+    </main>
+  </div>
+</template>
 
 <style></style>

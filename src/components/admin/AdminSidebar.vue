@@ -29,15 +29,15 @@ const route = useRouter();
 </script>
 
 <template>
-  <main class="bg-[#1B1B1B] h-full text-white">
+  <main class="bg-[#080E1C] h-full text-white">
     <h1 class="pt-6 mb-10"></h1>
 
     <div v-for="item in navItems" :key="item.name" class="mt-2">
       <RouterLink
         :to="item.path"
-        class="flex py-2 px-10 hover:text-white bg-[#404040]"
+        class="flex py-2 px-10 hover:text-white bg-[#131e36]"
         :class="{
-          'border-r-2 bg-blue-700 border-white ':
+          'border-r-2 !bg-blue-700 border-white ':
             route.currentRoute.value.path === item.path,
           'hover:bg-blue-700 hover:border-r-2':
             route.currentRoute.value.path !== item.path,

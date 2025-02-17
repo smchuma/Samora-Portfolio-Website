@@ -21,7 +21,7 @@ const handleFormSubmit = (values) => {
 <template>
   <div class="min-h-screen flex items-center justify-center pattern">
     <div
-      class="bg-[#2c2c2c] relative shadow-lg rounded-3xl p-8 w-full max-w-sm pb-14"
+      class="bg-[#0D1526] relative shadow-lg rounded-3xl p-8 w-full max-w-sm pb-14"
     >
       <h1 class="text-center mb-5 mt-10">Admin Panel</h1>
       <p class="text-red-400 text-sm text-center mb-6">{{ errorMessage }}</p>
