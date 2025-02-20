@@ -5,6 +5,7 @@ import { createPinia } from "pinia";
 import PrimeVue from "primevue/config";
 import Aura from "@primevue/themes/aura";
 import ToastService from "primevue/toastservice";
+import { useCookies } from "@vueuse/integrations/useCookies";
 
 import App from "./App.vue";
 import router from "./router";
