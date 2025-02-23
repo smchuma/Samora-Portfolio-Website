@@ -10,7 +10,7 @@ export const useUser = () => {
     queryKey: ["portfolio"],
     queryFn: async () => {
       const response = await axiosClient.get("/portfolio");
-      //   console.log("response", response.data.user);
+      console.log("response", response.data.user);
 
       return response.data.user;
     },
