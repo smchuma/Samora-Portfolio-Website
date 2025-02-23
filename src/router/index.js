@@ -5,11 +5,15 @@ import Experience from "@/views/admin/Experience.vue";
 import Projects from "@/views/admin/Projects.vue";
 import User from "@/views/admin/User.vue";
 import Login from "@/views/Login.vue";
-import Home from "@/views/portfolio/Home/Home.vue";
+import Home from "@/views/portfolio/Home.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import middlewarePipeline from "./middlewarePipeline";
 import redirectIfAuthenticated from "@/middlewares/redirectIfAuthenticated";
 import PortfolioLayout from "@/layouts/PortfolioLayout.vue";
+import AboutMe from "@/views/portfolio/AboutMe.vue";
+import Services from "@/views/portfolio/Services.vue";
+import Skills from "@/views/portfolio/Skills.vue";
+import PortolioProjects from "@/views/portfolio/PortolioProjects.vue";
 
 const routes = [
   {
@@ -20,6 +24,26 @@ const routes = [
         path: "",
         name: "Home",
         component: Home,
+      },
+      {
+        path: "/about",
+        name: "About Me",
+        component: AboutMe,
+      },
+      {
+        path: "/services",
+        name: "Services",
+        component: Services,
+      },
+      {
+        path: "/skills",
+        name: "Skills",
+        component: Skills,
+      },
+      {
+        path: "/projects",
+        name: "PortfolioProjects",
+        component: PortolioProjects,
       },
     ],
   },

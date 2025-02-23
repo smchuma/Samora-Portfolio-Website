@@ -36,17 +36,17 @@ const navItems = [
   },
   {
     name: "EXPERIENCES",
-    path: "/skills",
+    path: "",
     icon: Briefcase,
   },
   {
     name: "PROJECTS",
-    path: "/skills",
+    path: "/projects",
     icon: Code,
   },
   {
     name: "CONTACT ME",
-    path: "/contact",
+    path: "",
     icon: Mail,
   },
 ];
@@ -76,6 +76,7 @@ const navItems = [
           v-for="item in navItems"
           :key="item.name"
           :to="item.path"
+          @click="visible = false"
           class="relative flex items-center gap-x-2 py-2 px-4 rounded-md text-sm overflow-hidden group"
         >
           <component :is="item.icon" size="20" class="z-10" />
